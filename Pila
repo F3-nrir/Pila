@@ -1,0 +1,44 @@
+import java.io.*;
+
+class Primos {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(System.out);
+        out.println("Entre la cantidad de rangos numericos a evaluar");
+        int p = Integer.parseInt(in.readLine());
+        int m[] = new int[p], n[] = new int[p];
+        for (int i = 0; i < p; i++) {
+            String E[] = in.readLine().split(" ");
+            out.print("Entre el infimo del rango " + (i + 1) + ": ");
+            int a = Integer.parseInt(E[0]);
+            out.print("Entre el supremo del rango " + (i + 1) + ": ");
+            int b = Integer.parseInt(E[1]);
+            m[i] = a;
+            n[i] = b;
+        }
+        for (int i = 0; i < p; i++) {
+            out.println("Numeros primos dentro del rango "+(i+1)+": ");
+            int x = 1;
+            for (int j = m[i]; j <= n[i]; j++) {
+                boolean f = true;
+                if (j == 0 || j == 1 || j == 4) {
+                    f = false;
+                }
+
+                for (int k = 2; k * k <= j; k++) {
+
+                    if (j % k == 0) {
+                        f = false;
+                    }
+                }
+                if (f) {
+                    out.println(x + ": " + j);
+                    x++;
+                }
+            }
+            out.println("");
+        }
+        out.close();
+    }
+}
